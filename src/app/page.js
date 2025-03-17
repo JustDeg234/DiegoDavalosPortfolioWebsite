@@ -25,7 +25,7 @@ const projects = [
     title: "Augmented/Virtual Reality Kitchen Simulator",
     role: "Project Lead",
     description: "Developed an AR cooking experience that overlays digital ingredients and tools onto a real kitchen via an AR headset for safe, interactive lessons. Led a team of five to implement fluid dynamics, kinematics, and texture meshes, and created C# scripts in OpenXR Unity for a step-by-step recipe guide with tutorial videos.",
-    image: "/ar-kitchen.jpg",
+    image: "/ar-kitchen.gif",
     tags: ["Unity", "C#", "OpenXR", "AR Development"],
     github: "https://github.com/baconorigins/VROCnation"
   },
@@ -314,73 +314,103 @@ export default function Home() {
         </section>
 
         {/* Experience Section */}
-        <section id="experience" className="mb-12 md:mb-20">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-[#4a7397] text-center" data-aos="fade-right">Experience</h2>
-          <div className="relative">
-            {/* Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-[#1e2937]"></div>
+        <section id="experience" className="mb-12 md:mb-20 -mt-4 md:-mt-8">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-[#4a7397] text-center" data-aos="fade-right">Work Experience</h2>
+          
+          {/* Timeline Container */}
+          <div className="relative max-w-full md:max-w-5xl mx-auto">
+            {/* Vertical Timeline Line */}
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-[#4a7397]/30 transform md:-translate-x-1/2"></div>
 
-            {/* Experience Items */}
-            <div className="relative w-full">
-              {/* Cummins Experience */}
+            <div className="space-y-8 md:space-y-16">
+              {/* Customer Engineer Intern */}
               <div className="relative group" data-aos="fade-up">
-                <div className="flex items-center mb-8">
-                  {/* Left side - Photo */}
-                  <div className="absolute left-[calc(50%-300px)] top-1/2 transform -translate-y-1/2 hidden md:block">
-                    <div className="relative w-64 h-64 rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-150">
-                      <Image
-                        src="/cummins.jpg"
-                        alt="Cummins"
-                        fill
-                        className="object-contain"
-                      />
+                <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 -mt-2">
+                  <div className="w-4 h-4 rounded-full bg-[#4a7397]"></div>
+                </div>
+
+                {/* Cummins Photo - Hidden on mobile, visible on desktop */}
+                <div className="hidden md:block absolute left-[calc(50%-400px)] top-1/2 transform -translate-y-1/2">
+                  <div className="relative w-64 h-64 rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-150">
+          <Image
+                      src="/cummins.jpg"
+                      alt="Cummins"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+
+                {/* Content Container */}
+                <div className="pl-12 md:pl-0 w-full md:w-[45%] md:ml-[52%] relative group">
+                  <div className="md:absolute md:-left-12 md:top-1/2 md:transform md:-translate-y-1/2 md:w-12 md:h-[2px] md:bg-[#4a7397]/30 hidden md:block"></div>
+                  <div className="bg-[#0f1e2e] p-4 md:p-6 rounded-lg border border-[#1e2937] transition-all duration-300 hover:shadow-xl group">
+                    <div className="flex flex-col md:flex-row justify-between items-start mb-2">
+                      <h3 className="text-xl md:text-2xl font-bold text-[#4a7397]">Customer Engineer Intern</h3>
+                      <span className="text-amber-300 text-sm md:text-base">Summer 2024</span>
+                    </div>
+                    <p className="text-lg md:text-xl text-[#4a7397] mb-4">Cummins, Integrated Gas Business & Power Generation</p>
+                    <div className="max-h-0 group-hover:max-h-[500px] group-focus-within:max-h-[500px] overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100 [&.mobile-expanded]:max-h-[500px] [&.mobile-expanded]:opacity-100"
+                         ref={el => experienceRefs.current[0] = el}>
+                      <ul className="list-disc list-inside text-gray-300 space-y-2 md:space-y-3 pt-4">
+                        <li className="text-base md:text-lg leading-relaxed">Designed and realized customer-specific Generator Set Enclosures in AutoCAD Electrical by creating 2D and 3D drawings to fit Power Generation needs.</li>
+                        <li className="text-base md:text-lg leading-relaxed">Trained in the Power Generation Market including: Genset installation and applications, transfer switches, switchgears, sales process, diesel & natural gas engines, and fuel cell & hydrogen renewable power generation technologies.</li>
+                        <li className="text-base md:text-lg leading-relaxed">Prepared in assessing a wide range of customer power needs from emergency back-up power to Data Centers, whilst conforming to ISO ratings & contracts.</li>
+                      </ul>
                     </div>
                   </div>
-
-                  {/* Mobile Photo - Above Content */}
-                  <div className="md:hidden w-full flex justify-center mb-4">
-                    <div className="relative w-48 h-48 rounded-lg overflow-hidden">
-                      <Image
-                        src="/cummins.jpg"
-                        alt="Cummins"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-
-                  {/* Right side - Content */}
-                  <div className="w-full md:w-1/2 ml-auto bg-[#0f1e2e] p-6 rounded-lg border border-[#1e2937]">
-                    <h3 className="text-xl md:text-2xl font-bold text-[#4a7397] mb-2">Customer Engineer Intern</h3>
-                    <p className="text-base md:text-lg text-[#4a7397] mb-4">Cummins Inc.</p>
-                    <ul className="list-disc list-inside text-gray-300 space-y-2">
-                      <li>Developed and implemented a comprehensive test automation framework using Python and Robot Framework</li>
-                      <li>Automated over 50 test cases, reducing manual testing time by 75%</li>
-                      <li>Created detailed documentation and training materials for the automation framework</li>
-                      <li>Collaborated with cross-functional teams to identify and resolve software defects</li>
-                    </ul>
-                  </div>
-
-                  {/* Timeline Dot */}
-                  <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#4a7397] rounded-full"></div>
                 </div>
               </div>
 
-              {/* Building Manager Experience */}
-              <div className="relative" data-aos="fade-up" data-aos-delay="100">
-                <div className="flex items-center mb-8">
-                  <div className="w-full md:w-1/2 mr-auto bg-[#0f1e2e] p-6 rounded-lg border border-[#1e2937]">
-                    <h3 className="text-xl md:text-2xl font-bold text-[#4a7397] mb-2">Building Manager</h3>
-                    <p className="text-base md:text-lg text-[#4a7397] mb-4">Purdue University</p>
-                    <ul className="list-disc list-inside text-gray-300 space-y-2">
-                      <li>Managed daily operations of a 100,000+ sq ft facility</li>
-                      <li>Supervised and trained a team of 10+ student employees</li>
-                      <li>Coordinated with various departments for event setup and execution</li>
-                      <li>Ensured compliance with safety and security protocols</li>
-                    </ul>
+              {/* Building Manager */}
+              <div className="relative" data-aos="fade-up">
+                <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 -mt-2">
+                  <div className="w-4 h-4 rounded-full bg-[#4a7397]"></div>
+                </div>
+
+                {/* Content Container */}
+                <div className="pl-12 md:pl-0 w-full md:w-[45%] md:mr-[52%] relative group">
+                  <div className="md:absolute md:-right-12 md:top-1/2 md:transform md:-translate-y-1/2 md:w-12 md:h-[2px] md:bg-[#4a7397]/30 hidden md:block"></div>
+                  <div className="bg-[#0f1e2e] p-4 md:p-6 rounded-lg border border-[#1e2937] transition-all duration-300 hover:shadow-xl group">
+                    <div className="flex flex-col md:flex-row justify-between items-start mb-2">
+                      <h3 className="text-xl md:text-2xl font-bold text-[#4a7397]">Building Manager</h3>
+                      <span className="text-amber-300 text-sm md:text-base">March - September 2023</span>
+                    </div>
+                    <p className="text-lg md:text-xl text-[#4a7397] mb-4">CSULB University Student Union</p>
+                    <div className="max-h-0 group-hover:max-h-[500px] group-focus-within:max-h-[500px] overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100 [&.mobile-expanded]:max-h-[500px] [&.mobile-expanded]:opacity-100"
+                         ref={el => experienceRefs.current[1] = el}>
+                      <ul className="list-disc list-inside text-gray-300 space-y-2 md:space-y-3 pt-4">
+                        <li className="text-base md:text-lg leading-relaxed">Managed CSULB's main campus building, dedicated to providing students with a secure recreational space to relax, study, eat, and work.</li>
+                        <li className="text-base md:text-lg leading-relaxed">Trained to set up AV equipment and to use the mixer to manage audio levels for constant live events held in the building and communicated with other building managers via radio to solve customer requests throughout the different club hosted dinners, networking, and outreach events.</li>
+                      </ul>
+                    </div>
                   </div>
-                  {/* Timeline Dot */}
-                  <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-4 h-4 bg-[#4a7397] rounded-full"></div>
+                </div>
+              </div>
+
+              {/* IT & Customer Service Intern */}
+              <div className="relative" data-aos="fade-up">
+                <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 -mt-2">
+                  <div className="w-4 h-4 rounded-full bg-[#4a7397]"></div>
+                </div>
+
+                {/* Content Container */}
+                <div className="pl-12 md:pl-0 w-full md:w-[45%] md:ml-[52%] relative group">
+                  <div className="md:absolute md:-left-12 md:top-1/2 md:transform md:-translate-y-1/2 md:w-12 md:h-[2px] md:bg-[#4a7397]/30 hidden md:block"></div>
+                  <div className="bg-[#0f1e2e] p-4 md:p-6 rounded-lg border border-[#1e2937] transition-all duration-300 hover:shadow-xl group">
+                    <div className="flex flex-col md:flex-row justify-between items-start mb-2">
+                      <h3 className="text-xl md:text-2xl font-bold text-[#4a7397]">Information Technology & Customer Service Intern</h3>
+                      <span className="text-amber-300 text-sm md:text-base">Summer 2022</span>
+                    </div>
+                    <p className="text-lg md:text-xl text-[#4a7397] mb-4">Marvin Engineering Company</p>
+                    <div className="max-h-0 group-hover:max-h-[500px] group-focus-within:max-h-[500px] overflow-hidden transition-all duration-300 opacity-0 group-hover:opacity-100 [&.mobile-expanded]:max-h-[500px] [&.mobile-expanded]:opacity-100"
+                         ref={el => experienceRefs.current[2] = el}>
+                      <ul className="list-disc list-inside text-gray-300 space-y-2 md:space-y-3 pt-4">
+                        <li className="text-base md:text-lg leading-relaxed">Delivered IT support at a private aerospace firm in Inglewood, California—specializing in manufacturing carriages, release solutions, and auxiliary equipment for fighter jets—by resolving hundreds of employee support tickets, employee inquiries on network connectivity, and new hire hardware setups.</li>
+                        <li className="text-base md:text-lg leading-relaxed">Set-up a new MFA security measure using YubiKey, protecting sensitive data for 500+ employees, working alongside the cybersecurity team.</li>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
