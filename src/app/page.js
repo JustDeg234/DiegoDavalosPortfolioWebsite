@@ -1,102 +1,429 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
+import MusicPlayer from "./components/MusicPlayer";
+
+const projects = [
+  {
+    title: "8-bit RISC Processor on FPGA",
+    role: "",
+    description: "Developed a digital calculator using an 8-bit RISC architecture in Xilinx Vivado for the Nexys A7-100T FPGA. Designed a UI with slide switches for input, push buttons for operations, and 7-segment displays for results. Built core modules—including an ALU with an 8-bit Ripple Carry Adder/Subtractor, an Array Multiplier/Divider, and a 16-bit register—and implemented a time-multiplexing scheme with self-checking test benches.",
+    image: "/risc-processor.jpg",
+    tags: ["FPGA", "Verilog", "Digital Design", "Hardware Architecture"],
+    github: "https://github.com/JustDeg234/risc-processor"
+  },
+  {
+    title: "Space Invaders",
+    role: "",
+    description: "Developed an interactive LCD game on the TM4C123 microcontroller using the SSI protocol. Integrated potentiometer controls, sound effects via an R2R DAC with an amplifier, and precise animations using a SysTick Timer with interrupts. Documented the project with schematics, a software flowchart, and a breadboarded prototype featuring a Nokia5110 LCD, ADC, and internal DAC modules.",
+    image: "/space-invaders.jpg",
+    tags: ["Embedded C", "Microcontroller", "Hardware Integration", "Game Development"],
+    github: "https://github.com/JustDeg234/space-invaders"
+  },
+  {
+    title: "Augmented/Virtual Reality Kitchen Simulator",
+    role: "Project Lead",
+    description: "Developed an AR cooking experience that overlays digital ingredients and tools onto a real kitchen via an AR headset for safe, interactive lessons. Led a team of five to implement fluid dynamics, kinematics, and texture meshes, and created C# scripts in OpenXR Unity for a step-by-step recipe guide with tutorial videos.",
+    image: "/ar-kitchen.jpg",
+    tags: ["Unity", "C#", "OpenXR", "AR Development"],
+    github: "https://github.com/JustDeg234/ar-kitchen"
+  },
+  {
+    title: "OOP Banking System",
+    role: "",
+    description: "Developed an interactive banking console website supporting checking, savings, and credit accounts. Leveraged C/C++ skills with dynamic memory allocation, pointers, UML diagrams, vectors, and queues.",
+    image: "/banking.jpg",
+    tags: ["C++", "OOP", "Data Structures"],
+    github: "https://github.com/JustDeg234/banking-system"
+  },
+  {
+    title: "XR Drone",
+    role: "Project Lead",
+    description: "Led a team of six to construct a 6-inch drone through CAD modeling and 3D-printing the chassis, soldering FC/ESC and BLDC motors via workshops, all with the goal of developing a 3-DOF telexistence drone controlled by a head mounted display via a Quest 3 application.",
+    image: "/xr-drone.jpg",
+    tags: ["CAD", "Soldering", "Unity", "BetaFlight"],
+    github: "https://github.com/JustDeg234/xr-drone"
+  }
+];
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.js
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const [currentProject, setCurrentProject] = useState(0);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+  const nextProject = () => {
+    setCurrentProject((prev) => (prev + 1) % projects.length);
+  };
+
+  const prevProject = () => {
+    setCurrentProject((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  return (
+    <div className="min-h-screen bg-[#0a1625] text-white font-['Inter'] pt-4">
+      <MusicPlayer />
+      {/* Hero Section with Navigation */}
+      <div className="container mx-auto px-4 max-w-[60%]">
+        <div className="bg-[#0f1e2e] rounded-lg overflow-hidden shadow-2xl border border-[#1e2937]">
+          {/* Content Container */}
+          <div className="flex flex-col-reverse md:flex-row md:h-[400px]">
+            {/* Left Side - Information */}
+            <div className="w-full md:w-2/3 p-6 flex flex-col justify-center">
+              <div className="space-y-6">
+                <h1 className="text-6xl font-bold tracking-tight bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
+                  Diego Davalos
+                </h1>
+                <h2 className="text-3xl font-light text-blue-300">Computer Engineer | Embedded & FPGA Systems | VR/AR Developer</h2>
+                <p className="text-xl text-gray-300 leading-relaxed max-w-2xl">
+                  Currently pursuing a Bachelor's degree in Computer Engineering & Physics at <span className="text-2xl text-emerald-300">California State University, Long Beach</span>.
+                </p>
+                <p className="text-xl text-gray-300">
+                  Projected Graduation: <span className="text-2xl text-amber-300">May 2026</span>
+                </p>
+              </div>
+            </div>
+
+            {/* Right Side - Image */}
+            <div className="w-full md:w-1/3 p-6 flex items-center justify-center bg-[#0d1a29]">
+              <div className="relative">
+                <Image
+                  className="rounded-full border-2 border-[#4a7397]/30"
+                  src="/profile.jpg"
+                  alt="Diego Davalos"
+                  width={300}
+                  height={300}
+                  priority
+                />
+                <div className="absolute -inset-4 bg-[#4a7397]/10 rounded-full blur-xl -z-10"></div>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation Tabs */}
+          <nav className="border-t border-[#1e2937]">
+            <div className="container mx-auto">
+              <ul className="flex justify-center space-x-10 py-4 text-lg">
+                <li>
+                  <a href="#about" className="text-gray-300 hover:text-[#4a7397] transition-colors duration-300">
+                    About
+                  </a>
+                </li>
+                <li>
+                  <a href="#projects" className="text-gray-300 hover:text-[#4a7397] transition-colors duration-300">
+                    Projects
+                  </a>
+                </li>
+                <li>
+                  <a href="#experience" className="text-gray-300 hover:text-[#4a7397] transition-colors duration-300">
+                    Experience
+                  </a>
+                </li>
+                <li>
+                  <a href="#leadership" className="text-gray-300 hover:text-[#4a7397] transition-colors duration-300">
+                    Leadership
+                  </a>
+                </li>
+                <li>
+                  <a 
+                    href="/resume.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="bg-[#4a7397] text-white px-6 py-2 rounded-lg hover:bg-[#5a83a7] transition-all duration-300 shadow-lg hover:shadow-xl border border-[#1e2937]"
+                  >
+                    Resume
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </nav>
+        </div>
+      </div>
+
+      {/* Contact Images Section */}
+      <div className="container mx-auto px-4 max-w-[60%] py-8">
+        <div className="flex justify-center items-center space-x-12">
+          <a href="mailto:diegodavalos234@gmail.com" className="transition-transform duration-300 hover:scale-110">
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src="/gmail.png"
+              alt="Gmail"
+              width={48}
+              height={48}
+              className="rounded-lg"
             />
-            Deploy now
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+          <a href="https://github.com/JustDeg234" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:scale-110">
+            <Image
+              src="/github.png"
+              alt="GitHub"
+              width={48}
+              height={48}
+              className="rounded-lg"
+            />
+          </a>
+          <a href="https://linkedin.com/in/diegodavalos" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:scale-110">
+            <Image
+              src="/linkedin.png"
+              alt="LinkedIn"
+              width={48}
+              height={48}
+              className="rounded-lg"
+            />
+          </a>
+          <a href="https://www.xrengineering.club/" className="transition-transform duration-300 hover:scale-110">
+            <Image
+              src="/empty.png"
+              alt="Empty"
+              width={48}
+              height={48}
+              className="rounded-lg"
+            />
           </a>
         </div>
+      </div>
+
+      <main className="container mx-auto px-4 py-12 max-w-[60%]">
+        {/* About Section */}
+        <section id="about" className="mb-20">
+          <h2 className="text-4xl font-bold mb-8 text-[#4a7397]" data-aos="fade-right">About Me</h2>
+          <div className="bg-[#0f1e2e] p-8 rounded-lg border border-[#1e2937]" data-aos="fade-right" data-aos-delay="100">
+            <p className="text-gray-300 text-xl leading-relaxed">
+              Facilitating VR/AR growth at CSULB, creating data acquisition solutions for rocketry avionics, and a passion for SoC & Embedded development.
+            </p>
+          </div>
+        </section>
+
+        {/* Projects Section */}
+        <section id="projects" className="mb-20 relative min-h-[600px]">
+          <h2 className="text-4xl font-bold mb-8 text-[#4a7397] text-center" data-aos="fade-left">Featured Projects</h2>
+          
+          <div className="relative w-full h-[700px] overflow-hidden" data-aos="fade-left" data-aos-delay="100">
+            {/* Project Carousel */}
+            <div className="absolute w-full h-full flex items-center justify-center">
+              {/* Previous Project Button */}
+              <button 
+                onClick={prevProject}
+                className="absolute left-4 z-10 bg-[#0f1e2e]/80 hover:bg-[#162c44] text-[#4a7397] rounded-full p-4 transition-all"
+                aria-label="Previous project"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+
+              {/* Project Bubbles */}
+              {projects.map((project, index) => {
+                const position = index - currentProject;
+                return (
+                  <div
+                    key={project.title}
+                    className={`
+                      absolute w-[504px] h-[600px] transition-all duration-500 ease-in-out
+                      ${position === 0 ? 'z-20 scale-100' : 
+                        position === 1 ? 'z-10 scale-75 bg-[#0f1e2e] translate-x-[60%]' :
+                        position === -1 ? 'z-10 scale-75 bg-[#0f1e2e] -translate-x-[60%]' :
+                        'scale-50 bg-[#0f1e2e]'
+                      }
+                    `}
+                  >
+                    <div className={`group relative w-full h-full bg-[#0f1e2e] rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-105 border border-[#1e2937] ${position !== 0 ? 'opacity-50' : ''}`}>
+                      {/* Project Image */}
+                      <div className="h-[40%] relative bg-[#1e2937]/20">
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          layout="fill"
+                          objectFit="cover"
+                          className="opacity-90 group-hover:opacity-100 transition-opacity"
+                        />
+                      </div>
+
+                      {/* Project Content */}
+                      <div className="h-[60%] p-6 flex flex-col">
+                        <h3 className="text-2xl font-bold text-[#4a7397] mb-3">{project.title}</h3>
+                        {project.role && (
+                          <p className="text-lg text-[#4a7397] mb-3">{project.role}</p>
+                        )}
+                        <p className="text-gray-300 text-base mb-4 overflow-y-auto leading-relaxed">
+                          {project.description}
+                        </p>
+                        
+                        {/* Tags */}
+                        <div className="flex flex-wrap gap-2 mt-auto">
+                          {project.tags.map((tag) => (
+                            <span key={tag} className="px-4 py-2 bg-[#4a7397]/20 rounded-full text-sm text-[#a3c2db] font-medium">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        {/* GitHub Link - Appears on Hover */}
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute bottom-0 left-0 w-full bg-[#4a7397]/80 text-white py-3 text-center opacity-0 transform translate-y-full group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300"
+                        >
+                          View on GitHub →
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+
+              {/* Next Project Button */}
+              <button 
+                onClick={nextProject}
+                className="absolute right-4 z-10 bg-[#0f1e2e]/80 hover:bg-[#162c44] text-[#4a7397] rounded-full p-4 transition-all"
+                aria-label="Next project"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        {/* Experience Section */}
+        <section id="experience" className="mb-20 -mt-8">
+          <h2 className="text-4xl font-bold mb-12 text-[#4a7397] text-center" data-aos="fade-right">Work Experience</h2>
+          
+          {/* Timeline Container */}
+          <div className="relative max-w-5xl mx-auto">
+            {/* Vertical Timeline Line */}
+            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#4a7397]/30"></div>
+
+            <div className="space-y-16">
+              {/* Customer Engineer Intern */}
+              <div className="relative group" data-aos="fade-up">
+                <div className="absolute left-1/2 transform -translate-x-1/2 -mt-2">
+                  <div className="w-4 h-4 rounded-full bg-[#4a7397]"></div>
+                </div>
+                {/* Cummins Photo */}
+                <div className="absolute left-[calc(50%-400px)] top-1/2 transform -translate-y-1/2">
+                  <div className="relative w-64 h-64 rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-150">
+                    <Image
+                      src="/cummins.jpg"
+                      alt="Cummins"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                </div>
+                {/* Cummins Content */}
+                <div className="group ml-[52%] w-[45%] relative">
+                  <div className="absolute -left-12 top-1/2 transform -translate-y-1/2 w-12 h-[2px] bg-[#4a7397]/30"></div>
+                  <div className="bg-[#0f1e2e] p-6 rounded-lg border border-[#1e2937] transition-all duration-300 hover:shadow-xl">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-2xl font-bold text-[#4a7397]">Customer Engineer Intern</h3>
+                      <span className="text-amber-300">Summer 2024</span>
+                    </div>
+                    <p className="text-xl text-[#4a7397] mb-4">Cummins, Integrated Gas Business & Power Generation</p>
+                    <div className="max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-[500px]">
+                      <ul className="list-disc list-inside text-gray-300 space-y-3 pt-4">
+                        <li className="text-lg leading-relaxed">Designed and realized customer-specific Generator Set Enclosures in AutoCAD Electrical by creating 2D and 3D drawings to fit Power Generation needs.</li>
+                        <li className="text-lg leading-relaxed">Trained in the Power Generation Market including: Genset installation and applications, transfer switches, switchgears, sales process, diesel & natural gas engines, and fuel cell & hydrogen renewable power generation technologies.</li>
+                        <li className="text-lg leading-relaxed">Prepared in assessing a wide range of customer power needs from emergency back-up power to Data Centers, whilst conforming to ISO ratings & contracts.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Building Manager */}
+              <div className="relative" data-aos="fade-up" data-aos-delay="100">
+                <div className="absolute left-1/2 transform -translate-x-1/2 -mt-2">
+                  <div className="w-4 h-4 rounded-full bg-[#4a7397]"></div>
+                </div>
+                <div className="group mr-[52%] w-[45%] relative">
+                  <div className="absolute -right-12 top-1/2 transform -translate-y-1/2 w-12 h-[2px] bg-[#4a7397]/30"></div>
+                  <div className="bg-[#0f1e2e] p-6 rounded-lg border border-[#1e2937] transition-all duration-300 hover:shadow-xl">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-2xl font-bold text-[#4a7397]">Building Manager</h3>
+                      <span className="text-amber-300">March - September 2023</span>
+                    </div>
+                    <p className="text-xl text-[#4a7397] mb-4">CSULB University Student Union</p>
+                    <div className="max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-[500px]">
+                      <ul className="list-disc list-inside text-gray-300 space-y-3 pt-4">
+                        <li className="text-lg leading-relaxed">Managed CSULB's main campus building, dedicated to providing students with a secure recreational space to relax, study, eat, and work.</li>
+                        <li className="text-lg leading-relaxed">Trained to set up AV equipment and to use the mixer to manage audio levels for constant live events held in the building and communicated with other building managers via radio to solve customer requests throughout the different club hosted dinners, networking, and outreach events.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* IT & Customer Service Intern */}
+              <div className="relative" data-aos="fade-up" data-aos-delay="200">
+                <div className="absolute left-1/2 transform -translate-x-1/2 -mt-2">
+                  <div className="w-4 h-4 rounded-full bg-[#4a7397]"></div>
+                </div>
+                <div className="group ml-[52%] w-[45%] relative">
+                  <div className="absolute -left-12 top-1/2 transform -translate-y-1/2 w-12 h-[2px] bg-[#4a7397]/30"></div>
+                  <div className="bg-[#0f1e2e] p-6 rounded-lg border border-[#1e2937] transition-all duration-300 hover:shadow-xl">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-2xl font-bold text-[#4a7397]">Information Technology & Customer Service Intern</h3>
+                      <span className="text-amber-300">Summer 2022</span>
+                    </div>
+                    <p className="text-xl text-[#4a7397] mb-4">Marvin Engineering Company</p>
+                    <div className="max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-[500px]">
+                      <ul className="list-disc list-inside text-gray-300 space-y-3 pt-4">
+                        <li className="text-lg leading-relaxed">Delivered IT support at a private aerospace firm in Inglewood, California—specializing in manufacturing carriages, release solutions, and auxiliary equipment for fighter jets—by resolving hundreds of employee support tickets, employee inquiries on network connectivity, and new hire hardware setups.</li>
+                        <li className="text-lg leading-relaxed">Set-up a new MFA security measure using YubiKey, protecting sensitive data for 500+ employees, working alongside the cybersecurity team.</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Leadership Section */}
+        <section id="leadership" className="mb-20">
+          <h2 className="text-4xl font-bold mb-8 text-[#4a7397]" data-aos="fade-left">Leadership & Extracurricular Activities</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Activity Card Template */}
+            <div className="bg-[#0f1e2e] p-8 rounded-lg border border-[#1e2937]" data-aos="fade-left" data-aos-delay="100">
+              <h3 className="text-2xl font-bold mb-3">Beach Launch Team</h3>
+              <p className="text-xl text-[#4a7397] mb-3">Avionics Lead</p>
+              <p className="text-lg text-gray-300 leading-relaxed mb-4">Collaborated with CSULB's liquid rocketry student organization—specializing in the design, fabrication, and testing of liquid fuel rockets—to enhance the
+              legacy relay control and pressure transducer system by engineering an alternative solution that leverages the ESP-32's Wi-Fi module for RT data integration.</p>
+              <ul className="list-disc list-inside text-lg text-gray-300 leading-relaxed">
+                <li>Engineered and executed comprehensive data acquisition during the successful Theseus rocket static fire, capturing pressure readings from transducers, thrust force
+                via load cells, and temperature metrics using a LabJack DAQ and NI-DAQ.</li>
+              </ul>
+            </div>
+            {/* Add more activity cards here */}
+            <div className="bg-[#0f1e2e] p-8 rounded-lg border border-[#1e2937]" data-aos="fade-left" data-aos-delay="200">
+              <h3 className="text-2xl font-bold mb-3">XR Engineering Club</h3>
+              <p className="text-xl text-[#4a7397] mb-3">Founder/President</p>
+              <p className="text-lg text-gray-300 leading-relaxed mb-4">Founded CSULB's first student-led academic COE club for developing VR/AR software and hardware in robotics, supported by Professor Emel Demircan.</p>
+              <ul className="list-disc list-inside text-lg text-gray-300 leading-relaxed">
+                <li>Created "The Hub" virtual reality environment, featuring a VR Planet Simulator, Hole-in-the-Wall VR experience with full-body collision tracking, and AR
+                Kitchen Simulator, developed collaboratively using Unity and GitHub.</li>
+                <li>Equipment sponsored by CSULB's ISPACE through 3D printing/scanning, VR labs, Quest 3 headsets, and labs to host meetings/workshops.</li>
+                <li>Demonstrated "The Hub" at CSULB's COE Senior Design Expo alongside the HPRL/MetaCenter booth.</li>
+              </ul>
+            </div>
+            {/* Add more activity cards here */}
+            <div className="bg-[#0f1e2e] p-8 rounded-lg border border-[#1e2937]" data-aos="fade-left" data-aos-delay="300">
+              <h3 className="text-2xl font-bold mb-3">CSULB Human Performance and Robotics Lab</h3>
+              <p className="text-xl text-[#4a7397] mb-3">MetaCenter Student Lead</p>
+              <p className="text-lg text-gray-300 leading-relaxed mb-4">Mentored by Dr. Emel Demircan, who advanced the MetaCenter mission through research, such as integrating VR environments with haptic feedback for the
+              psychological rehabilitation of soccer athletes.</p>
+              <ul className="list-disc list-inside text-lg text-gray-300 leading-relaxed">
+                <li>MetaCenter focuses on expanding education using VR/AR; HPRL focuses on research in rehabilitation robotics and deep learning in sports biomechanics. </li>
+              </ul>
+            </div>
+          </div>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      <footer className="bg-[#0f1e2e] py-6 mt-20">
+        <div className="container mx-auto px-4 text-center text-gray-300 max-w-[60%]">
+          <p>© {new Date().getFullYear()} Diego Davalos. All rights reserved.</p>
+        </div>
       </footer>
     </div>
   );
