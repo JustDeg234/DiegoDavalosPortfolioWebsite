@@ -180,7 +180,7 @@ export default function Home() {
         </div>
       </div>
 
-      <main className="container mx-auto px-4 py-8 md:py-12 max-w-[60%] md:max-w-[60%] w-full">
+      <main className="container mx-auto px-4 py-8 md:py-12 w-full md:max-w-[60%]">
         {/* About Section */}
         <section id="about" className="mb-12 md:mb-20">
           <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-[#4a7397]" data-aos="fade-right">About Me</h2>
@@ -193,15 +193,13 @@ export default function Home() {
 
         {/* Projects Section */}
         <section id="projects" className="mb-12 md:mb-20 relative min-h-[400px] md:min-h-[600px]">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 md:mb-8 text-[#4a7397] text-center" data-aos="fade-left">Featured Projects</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-[#4a7397] text-center" data-aos="fade-left">Featured Projects</h2>
           
           <div className="relative w-full h-[500px] md:h-[700px] overflow-hidden" data-aos="fade-left" data-aos-delay="100">
-            {/* Project Carousel */}
             <div className="absolute w-full h-full flex items-center justify-center">
-              {/* Previous Project Button */}
               <button 
                 onClick={prevProject}
-                className="absolute left-2 md:left-4 z-10 bg-[#0f1e2e]/80 hover:bg-[#162c44] text-[#4a7397] rounded-full p-4 md:p-4 transition-all touch-manipulation"
+                className="absolute left-0 md:left-4 z-30 bg-[#0f1e2e]/80 hover:bg-[#162c44] text-[#4a7397] rounded-full p-4 transition-all touch-manipulation"
                 aria-label="Previous project"
               >
                 <svg className="w-8 h-8 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -209,7 +207,6 @@ export default function Home() {
                 </svg>
               </button>
 
-              {/* Project Bubbles */}
               {projects.map((project, index) => {
                 const position = index - currentProject;
                 return (
@@ -217,63 +214,53 @@ export default function Home() {
                     key={project.title}
                     className={`
                       absolute w-[90%] md:w-[504px] h-[400px] md:h-[600px] transition-all duration-500 ease-in-out
+                      absolute w-full md:w-[504px] h-[400px] md:h-[600px] transition-all duration-500 ease-in-out
                       ${position === 0 ? 'z-20 scale-100' : 
-                        position === 1 ? 'z-10 scale-75 bg-[#0f1e2e] translate-x-[60%]' :
-                        position === -1 ? 'z-10 scale-75 bg-[#0f1e2e] -translate-x-[60%]' :
-                        'scale-50 bg-[#0f1e2e]'
+                        position === 1 ? 'z-10 scale-75 translate-x-[100%] md:translate-x-[60%]' :
+                        position === -1 ? 'z-10 scale-75 -translate-x-[100%] md:-translate-x-[60%]' :
+                        'scale-50'
                       }
                     `}
                   >
-                    <div className={`group relative w-full h-full bg-[#0f1e2e] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl transition-transform duration-300 hover:scale-105 border border-[#1e2937] ${position !== 0 ? 'opacity-50' : ''}`}>
-                      {/* Project Image */}
-                      <div className="h-[40%] relative bg-[#1e2937]/20">
+                    <div className="w-full h-full bg-[#0f1e2e] rounded-lg border border-[#1e2937] p-6 group">
+                      <div className="relative w-full h-[55%] rounded-lg overflow-hidden mb-4">
                         <Image
                           src={project.image}
                           alt={project.title}
-                          layout="fill"
-                          objectFit="cover"
-                          className="opacity-90 group-hover:opacity-100 transition-opacity"
+                          fill
+                          className="object-cover"
                         />
-                      </div>
-
-                      {/* Project Content */}
-                      <div className="h-[60%] p-4 md:p-6 flex flex-col">
-                        <h3 className="text-xl md:text-2xl font-bold text-[#4a7397] mb-2 md:mb-3">{project.title}</h3>
-                        {project.role && (
-                          <p className="text-base md:text-lg text-[#4a7397] mb-2 md:mb-3">{project.role}</p>
-                        )}
-                        <p className="text-gray-300 text-sm md:text-base mb-4 overflow-y-auto leading-relaxed">
-                          {project.description}
-                        </p>
-                        
-                        {/* Tags */}
-                        <div className="flex flex-wrap gap-2 mt-auto">
-                          {project.tags.map((tag) => (
-                            <span key={tag} className="px-3 py-1 md:px-4 md:py-2 bg-[#4a7397]/20 rounded-full text-xs md:text-sm text-[#a3c2db] font-medium">
-                              {tag}
-                            </span>
-                          ))}
+                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
+                          <a
+                            href={project.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-[#4a7397] text-white px-6 py-2 rounded-full hover:bg-[#5d8bb3] transition-colors"
+                          >
+                            View on GitHub
+                          </a>
                         </div>
-
-                        {/* GitHub Link - Appears on Hover */}
-                        <a
-                          href={project.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="absolute bottom-0 left-0 w-full bg-[#4a7397]/80 text-white py-2 md:py-3 text-center opacity-0 transform translate-y-full group-hover:opacity-100 group-hover:translate-y-0 group-focus-within:opacity-100 group-focus-within:translate-y-0 transition-all duration-300 text-sm md:text-base"
-                        >
-                          View on GitHub →
-                        </a>
+                      </div>
+                      <h3 className="text-xl md:text-2xl font-bold text-[#4a7397] mb-2">{project.title}</h3>
+                      <p className="text-gray-300 text-sm md:text-base mb-4">{project.description}</p>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className="bg-[#1e2937] text-[#4a7397] px-3 py-1 rounded-full text-sm"
+                          >
+                            {tag}
+                          </span>
+                        ))}
                       </div>
                     </div>
                   </div>
                 );
               })}
 
-              {/* Next Project Button */}
               <button 
                 onClick={nextProject}
-                className="absolute right-2 md:right-4 z-10 bg-[#0f1e2e]/80 hover:bg-[#162c44] text-[#4a7397] rounded-full p-4 md:p-4 transition-all touch-manipulation"
+                className="absolute right-0 md:right-4 z-30 bg-[#0f1e2e]/80 hover:bg-[#162c44] text-[#4a7397] rounded-full p-4 transition-all touch-manipulation"
                 aria-label="Next project"
               >
                 <svg className="w-8 h-8 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -289,19 +276,20 @@ export default function Home() {
           <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-[#4a7397] text-center" data-aos="fade-right">Work Experience</h2>
           
           {/* Timeline Container */}
-          <div className="relative max-w-5xl mx-auto">
+          <div className="relative max-w-full md:max-w-5xl mx-auto">
             {/* Vertical Timeline Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-[#4a7397]/30"></div>
+            <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-1 bg-[#4a7397]/30 transform md:-translate-x-1/2"></div>
 
             <div className="space-y-8 md:space-y-16">
               {/* Customer Engineer Intern */}
               <div className="relative group" data-aos="fade-up">
-                <div className="absolute left-1/2 transform -translate-x-1/2 -mt-2">
+                <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 -mt-2">
                   <div className="w-4 h-4 rounded-full bg-[#4a7397]"></div>
                 </div>
-                {/* Cummins Photo */}
-                <div className="absolute left-[calc(50%-200px)] md:left-[calc(50%-400px)] top-1/2 transform -translate-y-1/2">
-                  <div className="relative w-32 h-32 md:w-64 md:h-64 rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-150">
+
+                {/* Cummins Photo - Hidden on mobile, visible on desktop */}
+                <div className="hidden md:block absolute left-[calc(50%-400px)] top-1/2 transform -translate-y-1/2">
+                  <div className="relative w-64 h-64 rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-150">
                     <Image
                       src="/cummins.jpg"
                       alt="Cummins"
@@ -310,16 +298,17 @@ export default function Home() {
                     />
                   </div>
                 </div>
-                {/* Cummins Content */}
-                <div className="group ml-[52%] w-[45%] relative">
-                  <div className="absolute -left-12 top-1/2 transform -translate-y-1/2 w-12 h-[2px] bg-[#4a7397]/30"></div>
+
+                {/* Content Container */}
+                <div className="pl-12 md:pl-0 w-full md:w-[45%] md:ml-[52%] relative group">
+                  <div className="md:absolute md:-left-12 md:top-1/2 md:transform md:-translate-y-1/2 md:w-12 md:h-[2px] md:bg-[#4a7397]/30 hidden md:block"></div>
                   <div className="bg-[#0f1e2e] p-4 md:p-6 rounded-lg border border-[#1e2937] transition-all duration-300 hover:shadow-xl">
-                    <div className="flex justify-between items-start mb-2">
+                    <div className="flex flex-col md:flex-row justify-between items-start mb-2">
                       <h3 className="text-xl md:text-2xl font-bold text-[#4a7397]">Customer Engineer Intern</h3>
                       <span className="text-amber-300 text-sm md:text-base">Summer 2024</span>
                     </div>
                     <p className="text-lg md:text-xl text-[#4a7397] mb-4">Cummins, Integrated Gas Business & Power Generation</p>
-                    <div className="max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-[500px] md:group-hover:max-h-[500px] group-focus-within:max-h-[500px]">
+                    <div className="max-h-0 md:group-hover:max-h-[500px] group-focus-within:max-h-[500px] overflow-hidden transition-all duration-300 md:hover:opacity-100 opacity-0 md:opacity-0">
                       <ul className="list-disc list-inside text-gray-300 space-y-2 md:space-y-3 pt-4">
                         <li className="text-base md:text-lg leading-relaxed">Designed and realized customer-specific Generator Set Enclosures in AutoCAD Electrical by creating 2D and 3D drawings to fit Power Generation needs.</li>
                         <li className="text-base md:text-lg leading-relaxed">Trained in the Power Generation Market including: Genset installation and applications, transfer switches, switchgears, sales process, diesel & natural gas engines, and fuel cell & hydrogen renewable power generation technologies.</li>
@@ -331,19 +320,21 @@ export default function Home() {
               </div>
 
               {/* Building Manager */}
-              <div className="relative" data-aos="fade-up" data-aos-delay="100">
-                <div className="absolute left-1/2 transform -translate-x-1/2 -mt-2">
+              <div className="relative" data-aos="fade-up">
+                <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 -mt-2">
                   <div className="w-4 h-4 rounded-full bg-[#4a7397]"></div>
                 </div>
-                <div className="group mr-[52%] w-[45%] relative">
-                  <div className="absolute -right-12 top-1/2 transform -translate-y-1/2 w-12 h-[2px] bg-[#4a7397]/30"></div>
+
+                {/* Content Container */}
+                <div className="pl-12 md:pl-0 w-full md:w-[45%] md:mr-[52%] relative group">
+                  <div className="md:absolute md:-right-12 md:top-1/2 md:transform md:-translate-y-1/2 md:w-12 md:h-[2px] md:bg-[#4a7397]/30 hidden md:block"></div>
                   <div className="bg-[#0f1e2e] p-4 md:p-6 rounded-lg border border-[#1e2937] transition-all duration-300 hover:shadow-xl">
-                    <div className="flex justify-between items-start mb-2">
+                    <div className="flex flex-col md:flex-row justify-between items-start mb-2">
                       <h3 className="text-xl md:text-2xl font-bold text-[#4a7397]">Building Manager</h3>
                       <span className="text-amber-300 text-sm md:text-base">March - September 2023</span>
                     </div>
                     <p className="text-lg md:text-xl text-[#4a7397] mb-4">CSULB University Student Union</p>
-                    <div className="max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-[500px] md:group-hover:max-h-[500px] group-focus-within:max-h-[500px]">
+                    <div className="max-h-0 md:group-hover:max-h-[500px] group-focus-within:max-h-[500px] overflow-hidden transition-all duration-300 md:hover:opacity-100 opacity-0 md:opacity-0">
                       <ul className="list-disc list-inside text-gray-300 space-y-2 md:space-y-3 pt-4">
                         <li className="text-base md:text-lg leading-relaxed">Managed CSULB's main campus building, dedicated to providing students with a secure recreational space to relax, study, eat, and work.</li>
                         <li className="text-base md:text-lg leading-relaxed">Trained to set up AV equipment and to use the mixer to manage audio levels for constant live events held in the building and communicated with other building managers via radio to solve customer requests throughout the different club hosted dinners, networking, and outreach events.</li>
@@ -354,19 +345,21 @@ export default function Home() {
               </div>
 
               {/* IT & Customer Service Intern */}
-              <div className="relative" data-aos="fade-up" data-aos-delay="200">
-                <div className="absolute left-1/2 transform -translate-x-1/2 -mt-2">
+              <div className="relative" data-aos="fade-up">
+                <div className="absolute left-4 md:left-1/2 transform -translate-x-1/2 -mt-2">
                   <div className="w-4 h-4 rounded-full bg-[#4a7397]"></div>
                 </div>
-                <div className="group ml-[52%] w-[45%] relative">
-                  <div className="absolute -left-12 top-1/2 transform -translate-y-1/2 w-12 h-[2px] bg-[#4a7397]/30"></div>
+
+                {/* Content Container */}
+                <div className="pl-12 md:pl-0 w-full md:w-[45%] md:ml-[52%] relative group">
+                  <div className="md:absolute md:-left-12 md:top-1/2 md:transform md:-translate-y-1/2 md:w-12 md:h-[2px] md:bg-[#4a7397]/30 hidden md:block"></div>
                   <div className="bg-[#0f1e2e] p-4 md:p-6 rounded-lg border border-[#1e2937] transition-all duration-300 hover:shadow-xl">
-                    <div className="flex justify-between items-start mb-2">
+                    <div className="flex flex-col md:flex-row justify-between items-start mb-2">
                       <h3 className="text-xl md:text-2xl font-bold text-[#4a7397]">Information Technology & Customer Service Intern</h3>
                       <span className="text-amber-300 text-sm md:text-base">Summer 2022</span>
                     </div>
                     <p className="text-lg md:text-xl text-[#4a7397] mb-4">Marvin Engineering Company</p>
-                    <div className="max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-[500px] md:group-hover:max-h-[500px] group-focus-within:max-h-[500px]">
+                    <div className="max-h-0 md:group-hover:max-h-[500px] group-focus-within:max-h-[500px] overflow-hidden transition-all duration-300 md:hover:opacity-100 opacity-0 md:opacity-0">
                       <ul className="list-disc list-inside text-gray-300 space-y-2 md:space-y-3 pt-4">
                         <li className="text-base md:text-lg leading-relaxed">Delivered IT support at a private aerospace firm in Inglewood, California—specializing in manufacturing carriages, release solutions, and auxiliary equipment for fighter jets—by resolving hundreds of employee support tickets, employee inquiries on network connectivity, and new hire hardware setups.</li>
                         <li className="text-base md:text-lg leading-relaxed">Set-up a new MFA security measure using YubiKey, protecting sensitive data for 500+ employees, working alongside the cybersecurity team.</li>
