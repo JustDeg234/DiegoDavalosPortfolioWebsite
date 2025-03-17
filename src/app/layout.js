@@ -13,8 +13,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Diego Davalos - Portfolio",
-  description: "Computer Engineering & Physics Student Portfolio",
+  title: 'Diego Davalos',
+  description: 'Diego Davalos - Software Engineer Portfolio',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({ children }) {

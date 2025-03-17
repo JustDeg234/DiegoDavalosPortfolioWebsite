@@ -11,7 +11,7 @@ const projects = [
     description: "Developed a digital calculator using an 8-bit RISC architecture in Xilinx Vivado for the Nexys A7-100T FPGA. Designed a UI with slide switches for input, push buttons for operations, and 7-segment displays for results. Built core modules—including an ALU with an 8-bit Ripple Carry Adder/Subtractor, an Array Multiplier/Divider, and a 16-bit register—and implemented a time-multiplexing scheme with self-checking test benches.",
     image: "/risc-processor.jpg",
     tags: ["FPGA", "Verilog", "Digital Design", "Hardware Architecture"],
-    github: "https://github.com/JustDeg234/risc-processor"
+    github: "https://github.com/JustDeg234/CECS-361-8BitRiscProcessor"
   },
   {
     title: "Space Invaders",
@@ -27,7 +27,7 @@ const projects = [
     description: "Developed an AR cooking experience that overlays digital ingredients and tools onto a real kitchen via an AR headset for safe, interactive lessons. Led a team of five to implement fluid dynamics, kinematics, and texture meshes, and created C# scripts in OpenXR Unity for a step-by-step recipe guide with tutorial videos.",
     image: "/ar-kitchen.jpg",
     tags: ["Unity", "C#", "OpenXR", "AR Development"],
-    github: "https://github.com/JustDeg234/ar-kitchen"
+    github: "https://github.com/baconorigins/VROCnation"
   },
   {
     title: "OOP Banking System",
@@ -35,7 +35,7 @@ const projects = [
     description: "Developed an interactive banking console website supporting checking, savings, and credit accounts. Leveraged C/C++ skills with dynamic memory allocation, pointers, UML diagrams, vectors, and queues.",
     image: "/banking.jpg",
     tags: ["C++", "OOP", "Data Structures"],
-    github: "https://github.com/JustDeg234/banking-system"
+    github: "https://github.com/JustDeg234/CECS275-BankingSystemProject"
   },
   {
     title: "XR Drone",
@@ -69,8 +69,8 @@ export default function Home() {
       },
       {
         root: null,
-        rootMargin: '-20% 0px -20% 0px', // Triggers when element is in middle 60% of viewport
-        threshold: 0.5
+        rootMargin: '-10% 0px -30% 0px', // Larger detection window, triggers when element is in middle 60% of viewport
+        threshold: 0.2 // Lower threshold for earlier detection
       }
     );
 
@@ -121,11 +121,11 @@ export default function Home() {
                   className="rounded-full border-2 border-[#4a7397]/30"
                   src="/profile.jpg"
                   alt="Diego Davalos"
-                  width={200}
-                  height={200}
+                  width={300}
+                  height={300}
                   priority
                 />
-                <div className="absolute -inset-4 bg-[#4a7397]/10 rounded-full blur-xl -z-10"></div>
+                <div className="absolute -inset-6 bg-[#4a7397]/10 rounded-full blur-xl -z-10"></div>
               </div>
             </div>
           </div>
@@ -174,40 +174,44 @@ export default function Home() {
       <div className="container mx-auto px-4 max-w-[60%] md:max-w-[60%] w-full py-4 md:py-8">
         <div className="flex justify-center items-center space-x-6 md:space-x-12">
           <a href="mailto:diegodavalos234@gmail.com" className="transition-transform duration-300 hover:scale-110">
-            <Image
-              src="/gmail.png"
-              alt="Gmail"
-              width={36}
-              height={36}
-              className="rounded-lg md:w-12 md:h-12"
-            />
+            <div className="relative w-9 h-9 md:w-12 md:h-12">
+              <Image
+                src="/gmail.png"
+                alt="Gmail"
+                fill
+                className="object-contain"
+              />
+            </div>
           </a>
           <a href="https://github.com/JustDeg234" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:scale-110">
-            <Image
-              src="/github.png"
-              alt="GitHub"
-              width={36}
-              height={36}
-              className="rounded-lg md:w-12 md:h-12"
-            />
+            <div className="relative w-9 h-9 md:w-12 md:h-12">
+              <Image
+                src="/github.png"
+                alt="GitHub"
+                fill
+                className="object-contain"
+              />
+            </div>
           </a>
           <a href="https://linkedin.com/in/diegodavalos" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:scale-110">
-            <Image
-              src="/linkedin.png"
-              alt="LinkedIn"
-              width={36}
-              height={36}
-              className="rounded-lg md:w-12 md:h-12"
-            />
+            <div className="relative w-9 h-9 md:w-12 md:h-12">
+              <Image
+                src="/linkedin.png"
+                alt="LinkedIn"
+                fill
+                className="object-contain"
+              />
+            </div>
           </a>
           <a href="https://www.xrengineering.club/" className="transition-transform duration-300 hover:scale-110">
-            <Image
-              src="/empty.png"
-              alt="Empty"
-              width={36}
-              height={36}
-              className="rounded-lg md:w-12 md:h-12"
-            />
+            <div className="relative w-9 h-9 md:w-12 md:h-12">
+              <Image
+                src="/empty.png"
+                alt="Empty"
+                fill
+                className="object-contain"
+              />
+            </div>
           </a>
         </div>
       </div>
@@ -227,14 +231,14 @@ export default function Home() {
         <section id="projects" className="mb-12 md:mb-20 relative min-h-[400px] md:min-h-[600px]">
           <h2 className="text-3xl md:text-4xl font-bold mb-8 md:mb-12 text-[#4a7397] text-center" data-aos="fade-left">Featured Projects</h2>
           
-          <div className="relative w-full h-[500px] md:h-[700px] overflow-hidden" data-aos="fade-left" data-aos-delay="100">
+          <div className="relative w-full h-[700px] md:h-[800px] overflow-hidden" data-aos="fade-left" data-aos-delay="100">
             <div className="absolute w-full h-full flex items-center justify-center">
               <button 
                 onClick={prevProject}
-                className="absolute left-0 md:left-4 z-30 bg-[#0f1e2e]/80 hover:bg-[#162c44] text-[#4a7397] rounded-full p-4 transition-all touch-manipulation"
+                className="absolute left-2 md:left-4 z-30 bg-[#0f1e2e]/80 hover:bg-[#162c44] text-[#4a7397] rounded-full p-3 md:p-4 transition-all touch-manipulation"
                 aria-label="Previous project"
               >
-                <svg className="w-8 h-8 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                 </svg>
               </button>
@@ -245,17 +249,16 @@ export default function Home() {
                   <div
                     key={project.title}
                     className={`
-                      absolute w-[90%] md:w-[504px] h-[400px] md:h-[600px] transition-all duration-500 ease-in-out
-                      absolute w-full md:w-[504px] h-[400px] md:h-[600px] transition-all duration-500 ease-in-out
+                      absolute w-[85%] md:w-[504px] h-[650px] md:h-[700px] transition-all duration-500 ease-in-out
                       ${position === 0 ? 'z-20 scale-100' : 
-                        position === 1 ? 'z-10 scale-75 translate-x-[100%] md:translate-x-[60%]' :
-                        position === -1 ? 'z-10 scale-75 -translate-x-[100%] md:-translate-x-[60%]' :
-                        'scale-50'
+                        position === 1 ? 'z-10 scale-75 translate-x-[100%] md:translate-x-[60%] opacity-50' :
+                        position === -1 ? 'z-10 scale-75 -translate-x-[100%] md:-translate-x-[60%] opacity-50' :
+                        'scale-50 opacity-0'
                       }
                     `}
                   >
-                    <div className="w-full h-full bg-[#0f1e2e] rounded-lg border border-[#1e2937] p-6 group">
-                      <div className="relative w-full h-[55%] rounded-lg overflow-hidden mb-4">
+                    <div className="w-full h-full bg-[#0f1e2e] rounded-lg border border-[#1e2937] p-4 md:p-6 group flex flex-col">
+                      <div className="relative w-full h-[35%] md:h-[40%] rounded-lg overflow-hidden mb-4">
                         <Image
                           src={project.image}
                           alt={project.title}
@@ -267,23 +270,30 @@ export default function Home() {
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="bg-[#4a7397] text-white px-6 py-2 rounded-full hover:bg-[#5d8bb3] transition-colors"
+                            className="bg-[#4a7397] text-white px-4 md:px-6 py-2 rounded-full hover:bg-[#5d8bb3] transition-colors text-sm md:text-base"
                           >
                             View on GitHub
                           </a>
                         </div>
                       </div>
-                      <h3 className="text-xl md:text-2xl font-bold text-[#4a7397] mb-2">{project.title}</h3>
-                      <p className="text-gray-300 text-sm md:text-base mb-4">{project.description}</p>
-                      <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="bg-[#1e2937] text-[#4a7397] px-3 py-1 rounded-full text-sm"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                      <div className="flex flex-col flex-grow justify-between">
+                        <div className="space-y-3 md:space-y-4">
+                          <h3 className="text-lg md:text-2xl font-bold text-[#4a7397]">{project.title}</h3>
+                          {project.role && (
+                            <p className="text-base md:text-lg text-[#4a7397]">{project.role}</p>
+                          )}
+                          <p className="text-sm md:text-base text-gray-300">{project.description}</p>
+                        </div>
+                        <div className="flex flex-wrap gap-2 mt-4 pb-2">
+                          {project.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="bg-[#1e2937] text-[#4a7397] px-2 md:px-3 py-1 rounded-full text-xs md:text-sm whitespace-nowrap"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -292,10 +302,10 @@ export default function Home() {
 
               <button 
                 onClick={nextProject}
-                className="absolute right-0 md:right-4 z-30 bg-[#0f1e2e]/80 hover:bg-[#162c44] text-[#4a7397] rounded-full p-4 transition-all touch-manipulation"
+                className="absolute right-2 md:right-4 z-30 bg-[#0f1e2e]/80 hover:bg-[#162c44] text-[#4a7397] rounded-full p-3 md:p-4 transition-all touch-manipulation"
                 aria-label="Next project"
               >
-                <svg className="w-8 h-8 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className="w-6 h-6 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
               </button>
