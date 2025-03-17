@@ -213,6 +213,16 @@ export default function Home() {
               />
             </div>
           </a>
+          <a href="https://www.beachlaunch.team/" className="transition-transform duration-300 hover:scale-110">
+            <div className="relative w-9 h-9 md:w-12 md:h-12">
+              <Image
+                src="/BLT.png"
+                alt="BLT"
+                fill
+                className="object-contain"
+              />
+            </div>
+          </a>
         </div>
       </div>
 
