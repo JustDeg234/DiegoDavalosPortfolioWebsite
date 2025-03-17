@@ -117,14 +117,14 @@ export default function Home() {
             {/* Right Side - Image */}
             <div className="w-full md:w-1/3 p-4 md:p-6 flex items-center justify-center bg-[#0d1a29]">
               <div className="relative">
-                <Image
+        <Image
                   className="rounded-full border-2 border-[#4a7397]/30"
                   src="/profile.jpg"
                   alt="Diego Davalos"
                   width={300}
                   height={300}
-                  priority
-                />
+          priority
+        />
                 <div className="absolute -inset-6 bg-[#4a7397]/10 rounded-full blur-xl -z-10"></div>
               </div>
             </div>
@@ -148,17 +148,17 @@ export default function Home() {
                   <a href="#experience" className="text-gray-300 hover:text-[#4a7397] transition-colors duration-300">
                     Experience
                   </a>
-                </li>
+          </li>
                 <li>
                   <a href="#leadership" className="text-gray-300 hover:text-[#4a7397] transition-colors duration-300">
                     Leadership
                   </a>
-                </li>
+          </li>
                 <li>
-                  <a 
+          <a
                     href="/resume.pdf" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
+            target="_blank"
+            rel="noopener noreferrer"
                     className="bg-[#4a7397] text-white px-4 md:px-6 py-2 rounded-lg hover:bg-[#5a83a7] transition-all duration-300 shadow-lg hover:shadow-xl border border-[#1e2937]"
                   >
                     Resume
@@ -195,7 +195,7 @@ export default function Home() {
           </a>
           <a href="https://linkedin.com/in/diegodavalos" target="_blank" rel="noopener noreferrer" className="transition-transform duration-300 hover:scale-110">
             <div className="relative w-9 h-9 md:w-12 md:h-12">
-              <Image
+            <Image
                 src="/linkedin.png"
                 alt="LinkedIn"
                 fill
@@ -259,7 +259,7 @@ export default function Home() {
                   >
                     <div className="w-full h-full bg-[#0f1e2e] rounded-lg border border-[#1e2937] p-4 md:p-6 group flex flex-col">
                       <div className="relative w-full h-[35%] md:h-[40%] rounded-lg overflow-hidden mb-4">
-                        <Image
+          <Image
                           src={project.image}
                           alt={project.title}
                           fill
@@ -268,8 +268,8 @@ export default function Home() {
                         <div className="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 transition-opacity">
                           <a
                             href={project.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
+          target="_blank"
+          rel="noopener noreferrer"
                             className="bg-[#4a7397] text-white px-4 md:px-6 py-2 rounded-full hover:bg-[#5d8bb3] transition-colors text-sm md:text-base"
                           >
                             View on GitHub
@@ -332,7 +332,7 @@ export default function Home() {
                 {/* Cummins Photo - Hidden on mobile, visible on desktop */}
                 <div className="hidden md:block absolute left-[calc(50%-400px)] top-1/2 transform -translate-y-1/2">
                   <div className="relative w-64 h-64 rounded-lg overflow-hidden transition-all duration-300 group-hover:scale-150">
-                    <Image
+          <Image
                       src="/cummins.jpg"
                       alt="Cummins"
                       fill
