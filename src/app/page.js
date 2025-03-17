@@ -94,7 +94,7 @@ export default function Home() {
     <div className="min-h-screen bg-[#0a1625] text-white font-['Inter'] pt-4">
       <MusicPlayer />
       {/* Hero Section with Navigation */}
-      <div className="container mx-auto px-4 max-w-[60%] md:max-w-[60%] w-full">
+      <div className="container mx-auto px-4 w-full md:max-w-[60%]">
         <div className="bg-[#0f1e2e] rounded-lg overflow-hidden shadow-2xl border border-[#1e2937]">
           {/* Content Container */}
           <div className="flex flex-col-reverse md:flex-row md:h-[400px]">
@@ -171,7 +171,7 @@ export default function Home() {
       </div>
 
       {/* Contact Images Section */}
-      <div className="container mx-auto px-4 max-w-[60%] md:max-w-[60%] w-full py-4 md:py-8">
+      <div className="container mx-auto px-4 w-full md:max-w-[60%] py-4 md:py-8">
         <div className="flex justify-center items-center space-x-6 md:space-x-12">
           <a href="mailto:diegodavalos234@gmail.com" className="transition-transform duration-300 hover:scale-110">
             <div className="relative w-9 h-9 md:w-12 md:h-12">
@@ -459,7 +459,7 @@ export default function Home() {
       </main>
 
       <footer className="bg-[#0f1e2e] py-4 md:py-6 mt-12 md:mt-20">
-        <div className="container mx-auto px-4 text-center text-gray-300 max-w-[60%] md:max-w-[60%] w-full">
+        <div className="container mx-auto px-4 text-center text-gray-300 w-full md:max-w-[60%]">
           <p className="text-sm md:text-base">© {new Date().getFullYear()} Diego Davalos. All rights reserved.</p>
         </div>
       </footer>
